@@ -9,3 +9,34 @@
 Подсказка: сложение элементов матриц выполнять поэлементно — первый элемент первой строки первой матрицы складываем
 с первым элементом первой строки второй матрицы и т.д.
 '''
+# optimal solution =)
+import numpy as np
+print(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) + np.array([[9, 8, 7], [6, 5, 4], [3, 2, 1]]))
+
+# irrational decision =)
+class Matrix:
+    def __init__(self,list_1, list_2):
+        self.list_1 = list_1
+        self.list_2 = list_2
+    def __add__(self):
+        res = np.matrix(np.zeros((3, 3)))
+
+        for x in range(list_1.shape[1]):
+            for y in range(list_2.shape[0]):
+                res[x, y] = list_1[x, y] + list_2[x, y]
+        return res
+
+
+
+    def __str__(self):
+        return f'{res}'
+
+
+my_matrix = Matrix(np.matrix([[1, 2, 3],
+                    [4, 5, 6],
+                    [7, 8, 9]]),
+                   np.matrix([[9, 8, 7],
+                    [6, 5, 4],
+                    [3, 2, 1]]))
+
+print(my_matrix)
