@@ -8,3 +8,41 @@
 Реализовать общий подсчет расхода ткани. Проверить на практике полученные на этом уроке знания:
 реализовать абстрактные классы для основных классов проекта, проверить на практике работу декоратора @property.
 '''
+
+from abc import ABC, abstractmethod
+
+class Dress(ABC):
+
+    def __init__(self, parameters):
+        self.parameters = parameters
+
+    def __add__(self, other):
+        return self.parameters + other.parameters
+
+    @abstractmethod
+    def expense_textile(self):
+        pass
+
+class Coat(Dress):
+    @property
+    def expense_textile(self):
+        return round(self.parameters / 6.5 + 0.5)
+
+    def __str__(self):
+        return str(round(self.parameters / 6.5 + 0.5)
+)
+
+class Suit(Dress):
+    @property
+    def expense_textile(self):
+        return round(2 * self.parameters + 0.3)
+
+    def __str__(self):
+        return str(round(2 * self.parameters + 0.3))
+
+a = Coat(16)
+print('Затраты ткани на пиджак:', a)
+
+b = Suit(16)
+print('Затраты ткани на костюм:', b)
+print('Общие затраты ткани:', a + b)
