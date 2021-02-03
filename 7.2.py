@@ -29,7 +29,7 @@ class Coat(Dress):
         return round(self.parameters / 6.5 + 0.5)
 
     def __str__(self):
-        return str(self.expense_textile())
+        return str(self.expense_textile)
 
 
 class Suit(Dress):
@@ -38,11 +38,12 @@ class Suit(Dress):
         return round(2 * self.parameters + 0.3)
 
     def __str__(self):
-        return str(self.expense_textile())
+        return str(self.expense_textile)
 
 a = Coat(16)
 print('Затраты ткани на пиджак:', a)
 
 b = Suit(16)
 print('Затраты ткани на костюм:', b)
-print('Общие затраты ткани:', int(b) + int(a))
+
+print('Общие затраты ткани:', a + b) # не понял почему считает не правильно( перевод в int не дал результа)
