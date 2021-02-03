@@ -15,28 +15,19 @@ print(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) + np.array([[9, 8, 7], [6, 5, 
 
 # irrational decision =)
 class Matrix:
-    def __init__(self,list_1, list_2):
-        self.list_1 = list_1
-        self.list_2 = list_2
-    def __add__(self):
-        res = np.matrix(np.zeros((3, 3)))
+    def __init__(self, matrix):
+        self.matrix = matrix
 
-        for x in range(list_1.shape[1]):
-            for y in range(list_2.shape[0]):
-                res[x, y] = list_1[x, y] + list_2[x, y]
-        return res
-
-
+    def __add__(self, other):
+        for num in range(len(self.matrix)):
+            for num2 in range(len(other.matrix[num])):
+                self.matrix[num][num2] += other.matrix[num][num2]
+        return self
 
     def __str__(self):
-        return f'{res}'
+        return str('\n'.join(['\t'.join([str(j) for j in i]) for i in self.matrix]))
 
 
-my_matrix = Matrix(np.matrix([[1, 2, 3],
-                    [4, 5, 6],
-                    [7, 8, 9]]),
-                   np.matrix([[9, 8, 7],
-                    [6, 5, 4],
-                    [3, 2, 1]]))
-
-print(my_matrix)
+matrix_1 = Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+matrix_2 = Matrix([[9, 8, 7], [6, 5, 4], [3, 2, 1]])
+print(matrix_1 + matrix_2)
