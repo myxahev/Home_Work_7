@@ -29,8 +29,8 @@ class Coat(Dress):
         return round(self.parameters / 6.5 + 0.5)
 
     def __str__(self):
-        return str(round(self.parameters / 6.5 + 0.5)
-)
+        return str(self.expense_textile())
+
 
 class Suit(Dress):
     @property
@@ -38,11 +38,11 @@ class Suit(Dress):
         return round(2 * self.parameters + 0.3)
 
     def __str__(self):
-        return str(round(2 * self.parameters + 0.3))
+        return str(self.expense_textile())
 
 a = Coat(16)
 print('Затраты ткани на пиджак:', a)
 
 b = Suit(16)
 print('Затраты ткани на костюм:', b)
-print('Общие затраты ткани:', a + b)
+print('Общие затраты ткани:', int(b) + int(a))
