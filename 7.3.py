@@ -17,3 +17,42 @@
 Или, количество ячеек клетки равняется 15, количество ячеек в ряду — 5. Тогда метод make_order() вернет строку: *****\n*****\n*****.
 Подсказка: подробный список операторов для перегрузки доступен по ссылке.
 '''
+
+class Cell:
+    def __init__(self, count_cell):
+        self.count_cell = int(count_cell)
+
+    def __add__(self, other):
+        return f'Объединение двух клеток (сложение): {self.count_cell + other.count_cell}'
+
+    def __sub__(self, other):
+        if self.count_cell - other.count_cell > 0:
+            return f'Участвуют две клетки (вычитание): {self.count_cell - other.count_cell}'
+        else:
+            return f'Вычитаниедвух клеток невозможно, так как разность отрицательная: {self.count_cell - other.count_cell}'
+
+    def __mul__(self, other):
+        return f'Создается общая клетка из двух (умножение): {self.count_cell * other.count_cell}'
+
+    def __floordiv__(self, other):
+        if other.count_cell == 0:
+            return 'Нет смысла, если вторая клетка отсутствует'
+        else:
+            return f'Создается общая клетка из двух (деление): {self.count_cell // other.count_cell}'
+
+    def make_order(self, num):
+        my_str = ''
+        for i in range(int(self.count_cell / num)):
+            my_str += f'{"*" * num} \\n'
+        my_str += f'{"*" * (self.count_cell % num)}'
+        return my_str
+
+
+a = Cell(input('Введите количество ячеек: '))
+b = Cell(input('Введите количество ячеек: '))
+print(a + b)
+print(a - b)
+print(a * b)
+print(a // b)
+print(a.make_order(5))
+print(b.make_order(5))
